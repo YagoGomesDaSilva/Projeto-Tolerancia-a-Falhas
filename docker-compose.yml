@@ -1,0 +1,54 @@
+version: "3.9"
+
+services:
+  ecommerce:
+    build:
+      context: ./ecommerce
+      dockerfile: Dockerfile
+    container_name: ecommerce
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: default
+
+  store:
+    build:
+      context: ./store
+      dockerfile: Dockerfile
+    container_name: store
+    ports:
+      - "8081:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: default
+
+  exchange0:
+    build:
+      context: ./exchange
+      dockerfile: Dockerfile
+    container_name: exchange0
+    ports:
+      - "8082:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: default
+    restart: always
+
+  exchange1:
+    build:
+      context: ./exchange
+      dockerfile: Dockerfile
+    container_name: exchange1
+    ports:
+      - "8083:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: default
+    restart: always
+
+  fidelity:
+    build:
+      context: ./fidelity
+      dockerfile: Dockerfile
+    container_name: fidelity
+    ports:
+      - "8084:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: default
